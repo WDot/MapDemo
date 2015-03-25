@@ -22,6 +22,9 @@ public class ActorFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NAME = "name";
+    private static final String TOP  = "top";
+    private static final String LEFT = "left";
+    private static final String INDEX = "index";
 
     // TODO: Rename and change types of parameters
     private String mName;
@@ -39,10 +42,13 @@ public class ActorFragment extends Fragment {
      * @return A new instance of fragment ActorFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ActorFragment newInstance(String name) {
+    public static ActorFragment newInstance(String name, int index) {
         ActorFragment fragment = new ActorFragment();
         Bundle args = new Bundle();
         args.putString(NAME, name);
+        args.putInt(INDEX,index);
+        args.putInt(TOP,0);
+        args.putInt(LEFT,0);
         fragment.setArguments(args);
         return fragment;
     }
@@ -90,6 +96,14 @@ public class ActorFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void relocate(Coordinates coords)
+    {
+        getArguments().putInt(LEFT,(int)coords.Y());
+        getArguments().putInt(TOP,(int)coords.X());
+        left = getArguments().getInt(LEFT);
+        top = getArguments().getInt(TOP);
     }
 
     /**

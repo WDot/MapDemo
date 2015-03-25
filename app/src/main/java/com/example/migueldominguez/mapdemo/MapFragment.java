@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 
 /**
@@ -28,6 +29,7 @@ public class MapFragment extends Fragment {
 
     private Coordinates topLeft;
     private Coordinates bottomRight;
+    private ActorManager actors;
 
     /**
      * Use this factory method to create a new instance of
@@ -41,7 +43,7 @@ public class MapFragment extends Fragment {
     public static MapFragment newInstance(Coordinates tl, Coordinates br) {
         MapFragment fragment = new MapFragment();
         Bundle args = new Bundle();
-        args.putDouble(TLX,tl.X());
+        args.putDouble(TLX, tl.X());
         args.putDouble(TLY,tl.Y());
         args.putDouble(BRX,br.X());
         args.putDouble(BRY,br.Y());
@@ -59,6 +61,9 @@ public class MapFragment extends Fragment {
         if (getArguments() != null) {
             topLeft = new Coordinates(getArguments().getDouble(TLX),getArguments().getDouble(TLY));
             bottomRight = new Coordinates(getArguments().getDouble(BRX),getArguments().getDouble(BRY));
+            actors = new ActorManager();
+            actors.addActor(ActorFragment.newInstance("LOL",0));
+            getFragmentManager().beginTransaction().add(R.id.map_body,actors.getActor(0)).commit();
         }
     }
 
@@ -66,7 +71,8 @@ public class MapFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_map, container, false);
+        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

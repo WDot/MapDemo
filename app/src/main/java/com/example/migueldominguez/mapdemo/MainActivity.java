@@ -1,17 +1,19 @@
 package com.example.migueldominguez.mapdemo;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements MapFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getFragmentManager().beginTransaction().add(R.id.map_app,MapFragment.newInstance(new Coordinates(50.5,50.5),new Coordinates(100.75,100.75))).commit();
     }
 
 
@@ -35,5 +37,10 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onFragmentInteraction(Uri uri)
+    {
+
     }
 }
