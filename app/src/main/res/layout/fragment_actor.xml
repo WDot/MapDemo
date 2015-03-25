@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="100dp"
+    android:layout_height="100dp" tools:context="com.example.migueldominguez.mapdemo.ActorFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/actor_circle"
+        android:src="@drawable/circle"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="center" />
+    <TextView
+        android:id="@+id/actor_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/unit_name"
+        style="@style/ActorText"
+        android:gravity="center" />
+
+</FrameLayout>
